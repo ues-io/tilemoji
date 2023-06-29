@@ -1,0 +1,6 @@
+name: ispopular
+type: FORMULA
+label: Is Popular
+formula:
+  expression: ben/tilemoji.sets > 200
+  returntype: CHECKBOX

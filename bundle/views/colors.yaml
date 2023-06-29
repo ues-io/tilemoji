@@ -1,0 +1,237 @@
+name: colors
+definition:
+  # Wires connect to data in collections
+  wires:
+    color:
+      collection: ben/tilemoji.color
+      fields:
+        ben/tilemoji.hex:
+        ben/tilemoji.id:
+        ben/tilemoji.name:
+        ben/tilemoji.sets: # Components determine the layout and composition of your view
+        ben/tilemoji.type: {}
+    order:
+      batchsize: 200
+      collection: ben/checkout.order
+      init:
+        query: false
+        create: true
+      fields:
+        ben/checkout.id: {}
+        ben/checkout.success_url: {}
+      defaults:
+        - valueSource: SHORTID
+          field: ben/checkout.id
+        - valueSource: VALUE
+          field: ben/checkout.success_url
+          value: $Site{url}/home
+    orderitem:
+      batchsize: 200
+      init:
+        query: false
+      collection: ben/checkout.orderitem
+      fields:
+        ben/checkout.description: {}
+        ben/checkout.id: {}
+        ben/checkout.name: {}
+        ben/checkout.order: {}
+        ben/checkout.quantity: {}
+        ben/checkout.price: {}
+      defaults:
+        - valueSource: LOOKUP
+          field: ben/checkout.order->uesio/core.uniquekey
+          lookupWire: order
+          lookupField: ben/checkout.id
+        - valueSource: VALUE
+          field: ben/checkout.price
+          value: 1
+  components:
+    - uesio/io.box:
+        uesio.styleTokens:
+          root:
+            - h-screen
+            - overflow-auto
+        components:
+          - uesio/io.box:
+              uesio.styleTokens:
+                root:
+                  - p-5
+                  - lg:p-10
+                  - sticky
+                  - top-0
+                  - z-10
+                  - bg-white
+                  - shadow
+              components:
+                - uesio/io.group:
+                    uesio.styleTokens:
+                      root:
+                        - justify-between
+                    components:
+                      - uesio/io.image:
+                          loading: lazy
+                          file: ben/tilemoji.logo
+                          width: 300
+                          uesio.styleTokens:
+                            root:
+                              - w-[200px]
+                              - md:w-[300px]
+                          signals:
+                            - signal: route/NAVIGATE
+                              path: home
+                      - uesio/io.button:
+                          uesio.variant: uesio/io.primary
+                          text: Order Now
+                          signals:
+                            - signal: wire/SAVE
+                              wires:
+                                - order
+                                - orderitem
+                            - signal: route/NAVIGATE
+                              path: order/${order:uesio/core.id}
+                              namespace: ben/checkout
+          - uesio/io.box:
+              uesio.styleTokens:
+                root:
+                  - p-5
+                  - lg:p-10
+                  - bg-slate-100
+              components:
+                - uesio/io.group:
+                    columnGap: 10px
+                    components:
+                      - uesio/io.searchbox:
+                          wire: color
+                          searchFields:
+                            - ben/tilemoji.name
+                      - uesio/io.filter:
+                          wire: color
+                          fieldId: ben/tilemoji.type
+                          labelPosition: none
+                - uesio/io.grid:
+                    items:
+                      - uesio/io.box:
+                          components:
+                            - ben/mosaic.mosaic:
+                                text: "\U0001F32E"
+                                fontSize: 35
+                                heightOffset: 4
+                                gridHeight: null
+                                gridWidth: null
+                                uesio.styleTokens:
+                                  root:
+                                    - gap-[1px]
+                                colorwire: color
+                                coloridfield: ben/tilemoji.id
+                                colornamefield: ben/tilemoji.name
+                                colorvaluefield: ben/tilemoji.hex
+                                tilewire: orderitem
+                                tilecoloridfield: ben/checkout.id
+                                tilecolornamefield: ben/checkout.name
+                                tilecolorvaluefield: ben/checkout.description
+                                tilequantityfield: ben/checkout.quantity
+                            - uesio/io.group:
+                                columnGap: 10px
+                                components:
+                                  - uesio/io.button:
+                                      text: "\U0001F32E"
+                                      icon: ""
+                                      uesio.variant: uesio/io.secondary
+                                      signals:
+                                        - signal: component/CALL
+                                          component: ben/mosaic.mosaic
+                                          componentsignal: SET_TEXT
+                                          text: "\U0001F32E"
+                                  - uesio/io.button:
+                                      text: "\U0001F60D"
+                                      icon: ""
+                                      uesio.variant: uesio/io.secondary
+                                      signals:
+                                        - signal: component/CALL
+                                          component: ben/mosaic.mosaic
+                                          componentsignal: SET_TEXT
+                                          text: "\U0001F60D"
+                                  - uesio/io.button:
+                                      text: "\U0001F3C0"
+                                      icon: ""
+                                      uesio.variant: uesio/io.secondary
+                                      signals:
+                                        - signal: component/CALL
+                                          component: ben/mosaic.mosaic
+                                          componentsignal: SET_TEXT
+                                          text: "\U0001F3C0"
+                                  - uesio/io.button:
+                                      text: "\U0001F336️"
+                                      icon: ""
+                                      uesio.variant: uesio/io.secondary
+                                      signals:
+                                        - signal: component/CALL
+                                          component: ben/mosaic.mosaic
+                                          componentsignal: SET_TEXT
+                                          text: "\U0001F336️"
+                                  - uesio/io.button:
+                                      text: "\U0001F525"
+                                      icon: ""
+                                      uesio.variant: uesio/io.secondary
+                                      signals:
+                                        - signal: component/CALL
+                                          component: ben/mosaic.mosaic
+                                          componentsignal: SET_TEXT
+                                          text: "\U0001F525"
+                                  - uesio/io.button:
+                                      text: "\U0001F929"
+                                      icon: ""
+                                      uesio.variant: uesio/io.secondary
+                                      signals:
+                                        - signal: component/CALL
+                                          component: ben/mosaic.mosaic
+                                          componentsignal: SET_TEXT
+                                          text: "\U0001F929"
+                                uesio.styleTokens:
+                                  root:
+                                    - mt-4
+                                    - flex
+                                    - flex-wrap
+                      - uesio/io.deck:
+                          mode: READ
+                          wire: orderitem
+                          uesio.styleTokens:
+                            root:
+                              - grid-cols-1
+                              - lg:grid-cols-2
+                              - lg:col-span-2
+                              - xl:grid-cols-3
+                              - auto-rows-max
+                              - gap-2
+                          components:
+                            - uesio/io.group:
+                                components:
+                                  - uesio/io.text:
+                                      text: ${ben/checkout.quantity}
+                                      element: div
+                                      uesio.styleTokens:
+                                        root:
+                                          - w-8
+                                          - leading-[0]
+                                          - bg-slate-200
+                                          - text-slate-700
+                                          - py-2
+                                          - font-bold
+                                          - text-center
+                                          - text-[6pt]
+                                          - rounded
+                                  - ben/tilemoji.colorbox:
+                                      color: ${ben/checkout.description}
+                                  - uesio/io.text:
+                                      text: ${ben/checkout.name}
+                                      uesio.styleTokens:
+                                        root:
+                                          - font-light
+                                          - text-xs
+                                          - text-slate-700
+                    uesio.styleTokens:
+                      root:
+                        - grid-cols-1
+                        - md:grid-cols-2
+                        - lg:grid-cols-3
+                        - gap-6

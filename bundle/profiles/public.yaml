@@ -1,0 +1,4 @@
+name: public
+permissionSets:
+  - ben/tilemoji.public
+  - ben/checkout.public

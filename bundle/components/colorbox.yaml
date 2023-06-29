@@ -1,0 +1,21 @@
+name: colorbox
+category: DATA
+pack: main
+entrypoint: components/colorbox/colorbox
+slots: null
+title: Colorbox
+discoverable: true
+description: A color box
+properties:
+  - type: TEXT
+    name: color
+    label: Color
+defaultDefinition: null
+sections:
+  - type: HOME
+    properties:
+      - color
+  - type: STYLES
+  - type: DISPLAY
+signals: null
+styleRegions: null

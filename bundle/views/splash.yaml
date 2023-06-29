@@ -1,0 +1,28 @@
+name: splash
+definition:
+  # Wires connect to data in collections
+  wires: {}
+  # Components determine the layout and composition of your view
+  components:
+    - uesio/io.grid:
+        items:
+          - uesio/io.box:
+              components:
+                - uesio/io.image:
+                    loading: lazy
+                    file: ben/tilemoji.logo
+                    signals:
+                      - signal: route/NAVIGATE
+                        path: tilemoji
+              uesio.styleTokens:
+                root:
+                  - text-center
+                  - p-6
+                  - md:p-12
+                  - lg:p-24
+                  - xl:p-48
+        uesio.styleTokens:
+          root:
+            - h-full
+            - items-center
+            - p-6

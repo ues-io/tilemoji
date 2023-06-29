@@ -1,0 +1,14 @@
+name: ben/tilemoji
+homeRoute: ben/tilemoji.home
+publicProfile: ben/tilemoji.public
+dependencies:
+  ben/checkout:
+    version: v0.0.1
+  ben/mosaic:
+    version: v0.0.1
+  uesio/builder:
+    version: v0.0.1
+  uesio/core:
+    version: v0.0.1
+  uesio/io:
+    version: v0.0.1

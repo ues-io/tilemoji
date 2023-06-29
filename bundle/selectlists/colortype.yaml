@@ -1,0 +1,11 @@
+name: colortype
+options:
+  - label: Solid
+    value: Solid
+  - label: Transparent
+    value: Transparent
+  - label: Satin
+    value: Satin
+  - label: Pearl
+    value: Pearl
+blank_option_label: All Colors

@@ -1,0 +1,13 @@
+name: public
+named: {}
+views: {}
+collections: {}
+routes: {}
+files:
+  ben/tilemoji.logo: false
+allowallcollections: true
+allowallviews: true
+allowallroutes: true
+allowallfiles: true
+modifyallrecords: false
+viewallrecords: false
